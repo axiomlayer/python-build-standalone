@@ -16,6 +16,7 @@ permissions: { }
 
 jobs:
   crate-build:
+    if: github.repository == 'astral-sh/python-build-standalone'
     needs:
       - generate-matrix
     runs-on: ${{ matrix.runner }}
@@ -51,7 +52,7 @@ jobs:
           path: target/release/pythonbuild
 
   image:
-    if: ${{ needs.generate-matrix.outputs.any_builds == 'true' }}
+    if: ${{ github.repository == 'astral-sh/python-build-standalone' && needs.generate-matrix.outputs.any_builds == 'true' }}
     needs:
       - generate-matrix
     strategy:
@@ -131,6 +132,7 @@ jobs:
           compression-level: '0'
 
   generate-matrix:
+    if: github.repository == 'astral-sh/python-build-standalone'
     name: Generate build matrix
     runs-on: ubuntu-latest
     outputs:
@@ -201,6 +203,7 @@ jobs:
           STEPS_GET_LABELS_OUTPUTS_LABELS: ${{ steps.get-labels.outputs.labels }}
 
   build-0:
+    if: github.repository == 'astral-sh/python-build-standalone'
     needs:
       - generate-matrix
       - crate-build
@@ -337,6 +340,7 @@ jobs:
           MATRIX_LIBC: ${{ matrix.libc }}
 
   build-1:
+    if: github.repository == 'astral-sh/python-build-standalone'
     needs:
       - generate-matrix
       - crate-build

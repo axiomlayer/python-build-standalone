@@ -22,6 +22,7 @@ permissions: {}
 
 jobs:
   release-gate:
+    if: github.repository == 'astral-sh/python-build-standalone'
     name: Release gate
     runs-on: ubuntu-latest
     environment: release
@@ -29,6 +30,7 @@ jobs:
       - run: echo "Release approved"
 
   release:
+    if: github.repository == 'astral-sh/python-build-standalone'
     name: Release
     needs: release-gate
     env:
@@ -182,4 +184,3 @@ jobs:
           sleep 10
           # Use admin to bypass required review
           gh pr merge --squash --admin "$BRANCH_NAME"
-

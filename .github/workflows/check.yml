@@ -16,6 +16,7 @@ permissions: {}
 
 jobs:
   check:
+    if: github.repository == 'astral-sh/python-build-standalone'
     runs-on: "ubuntu-latest"
     name: "check"
     steps:

@@ -1,0 +1,118 @@
+{
+  "schema": "axiom-python-build-provider-v1",
+  "revision": 1,
+  "source": {
+    "upstream": "astral-sh/python-build-standalone",
+    "fork": "AxiomLayer/python-build-standalone",
+    "commit": "4bb01f09aaf362c71e891be4a41cb6d6ddf830b3",
+    "tag": "20260901",
+    "version": "3.14.7",
+    "build": "20260901",
+    "releaseUrl": "https://github.com/astral-sh/python-build-standalone/releases/tag/20260901"
+  },
+  "consumer": {
+    "repository": "AxiomLayer/dotfiles",
+    "pullRequest": 49,
+    "commit": "28df122c5685be02605eb5f2880fc155cd4b21cd",
+    "policy": {
+      "path": "config/upstream-promotion-policy.json",
+      "sourceUrl": "https://github.com/AxiomLayer/dotfiles/blob/28df122c5685be02605eb5f2880fc155cd4b21cd/config/upstream-promotion-policy.json",
+      "snapshotPath": "dotfiles/upstream-promotion-policy.json",
+      "rawSha256": "f48137ef0925ee791313dbce0d2790919a3740f160baceac5e82a35f19d02dc1",
+      "nixHash": "sha256-9IE37wkl7nkTE9vODSeQkZo3QPFgus6sXoKjXxnQLcE=",
+      "canonicalSha256": "0628d345837f3ec3931bf51aad5b70b8aa9619522df55695b67a95f03f4e009b"
+    },
+    "runtimeManifest": {
+      "path": "config/runtime-foundation.json",
+      "sourceUrl": "https://github.com/AxiomLayer/dotfiles/blob/28df122c5685be02605eb5f2880fc155cd4b21cd/config/runtime-foundation.json",
+      "snapshotPath": "dotfiles/runtime-foundation.json",
+      "rawSha256": "68ab5f870fbdcf6f21296d75cc9dcf74933b107cc83a1cb4f43b6f9514ff4e8d",
+      "nixHash": "sha256-aKtfhw+9z28hKW11zJ3PdJM7EHzIOhy09DtvlRT/To0="
+    },
+    "candidate": {
+      "path": "promotion/candidate.json",
+      "sourceUrl": "https://github.com/AxiomLayer/dotfiles/blob/28df122c5685be02605eb5f2880fc155cd4b21cd/promotion/candidate.json",
+      "snapshotPath": "dotfiles/candidate.json",
+      "rawSha256": "29a3d180e595031969b61864f7cbe30384d9f4cdace416cf90a24f607fe65065",
+      "nixHash": "sha256-KaPRgOWVAxlpthhk98vjA4TZ9M2s5BbPkKJPYH/mUGU="
+    },
+    "installRoot": "python",
+    "requiredCapabilities": [
+      "tomllib",
+      "sqlite-fts5"
+    ]
+  },
+  "nix": {
+    "nixpkgsCommit": "c3eea5b2156db11c7eeeada3dc737711255b253e",
+    "nixpkgsNarHash": "sha256-vdhpDJ3Lr24lkZ+fDCjmBRRtw9/vcSzkqGJOJyF5h2U=",
+    "nixpkgsLastModified": 1789358734
+  },
+  "artifacts": {
+    "darwin-aarch64": {
+      "upstreamAsset": "cpython-3.14.7+20260901-aarch64-apple-darwin-install_only.tar.gz",
+      "upstreamUrl": "https://github.com/astral-sh/python-build-standalone/releases/download/20260901/cpython-3.14.7%2B20260901-aarch64-apple-darwin-install_only.tar.gz",
+      "deliveryUrl": "https://install.axiomlayer.com/runtime/python/3.14.7+20260901/cpython-aarch64-apple-darwin-install_only.tar.gz",
+      "size": 26654194,
+      "sha256": "30daa970c7d223530120f1693cd3c6fa4c0c0d31ef158710b0dd77f286a5b23e",
+      "nixHash": "sha256-MNqpcMfSI1MBIPFpPNPG+kwMDTHvFYcQsN138oalsj4=",
+      "binaryPath": "python/bin/python3.14",
+      "binarySha256": "01a840f3e077b6a6d2566d82450a1e73f9f95c782c33fde0048d8d40f5e1c5f6",
+      "machines": ["arm64", "aarch64"]
+    },
+    "darwin-x86_64": {
+      "upstreamAsset": "cpython-3.14.7+20260901-x86_64-apple-darwin-install_only.tar.gz",
+      "upstreamUrl": "https://github.com/astral-sh/python-build-standalone/releases/download/20260901/cpython-3.14.7%2B20260901-x86_64-apple-darwin-install_only.tar.gz",
+      "deliveryUrl": "https://install.axiomlayer.com/runtime/python/3.14.7+20260901/cpython-x86_64-apple-darwin-install_only.tar.gz",
+      "size": 26745298,
+      "sha256": "dd8841a2e8ef94bd1a02b52f92843120942140f112145d4e0199abab56f120b1",
+      "nixHash": "sha256-3YhBoujvlL0aArUvkoQxIJQhQPESFF1OAZmrq1bxILE=",
+      "binaryPath": "python/bin/python3.14",
+      "binarySha256": "01deab87480f8af479703aa7e8f00a0d27ad4bc95ac1ad11b2375235accdcb69",
+      "machines": ["x86_64", "amd64"]
+    },
+    "linux-aarch64": {
+      "upstreamAsset": "cpython-3.14.7+20260901-aarch64-unknown-linux-gnu-install_only.tar.gz",
+      "upstreamUrl": "https://github.com/astral-sh/python-build-standalone/releases/download/20260901/cpython-3.14.7%2B20260901-aarch64-unknown-linux-gnu-install_only.tar.gz",
+      "deliveryUrl": "https://install.axiomlayer.com/runtime/python/3.14.7+20260901/cpython-aarch64-linux-gnu-install_only.tar.gz",
+      "size": 95628137,
+      "sha256": "30f1cc489be654477d895b441e196bb080738bf0456da82080ad4ab66a22d80f",
+      "nixHash": "sha256-MPHMSJvmVEd9iVtEHhlrsIBzi/BFbagggK1Ktmoi2A8=",
+      "binaryPath": "python/bin/python3.14",
+      "binarySha256": "566f5e480aa1adccd3214f6251f50cab08daf768158d778fd9a73d19ab1fe001",
+      "machines": ["aarch64", "arm64"]
+    },
+    "linux-x86_64": {
+      "upstreamAsset": "cpython-3.14.7+20260901-x86_64-unknown-linux-gnu-install_only.tar.gz",
+      "upstreamUrl": "https://github.com/astral-sh/python-build-standalone/releases/download/20260901/cpython-3.14.7%2B20260901-x86_64-unknown-linux-gnu-install_only.tar.gz",
+      "deliveryUrl": "https://install.axiomlayer.com/runtime/python/3.14.7+20260901/cpython-x86_64-linux-gnu-install_only.tar.gz",
+      "size": 125528086,
+      "sha256": "0ab3305457051cd3e7c031857e005f1bda17c218a1990567dacaaac6dd1d14f0",
+      "nixHash": "sha256-CrMwVFcFHNPnwDGFfgBfG9oXwhihmQVn2sqqxt0dFPA=",
+      "binaryPath": "python/bin/python3.14",
+      "binarySha256": "8dfa9757a52b9c3edf1dedaaa2a7a8c40ea4beb058f20e90bdd47b48f3b1b176",
+      "machines": ["x86_64", "amd64"]
+    },
+    "windows-aarch64": {
+      "upstreamAsset": "cpython-3.14.7+20260901-aarch64-pc-windows-msvc-install_only.tar.gz",
+      "upstreamUrl": "https://github.com/astral-sh/python-build-standalone/releases/download/20260901/cpython-3.14.7%2B20260901-aarch64-pc-windows-msvc-install_only.tar.gz",
+      "deliveryUrl": "https://install.axiomlayer.com/runtime/python/3.14.7+20260901/cpython-aarch64-windows-msvc-install_only.tar.gz",
+      "size": 46419298,
+      "sha256": "5efa2548bf1248ca07ed6f8afb0cb52b83d4869d533ea5be919a989c8ee1b17c",
+      "nixHash": "sha256-XvolSL8SSMoH7W+K+wy1K4PUhp1TPqW+kZqYnI7hsXw=",
+      "binaryPath": "python/python.exe",
+      "binarySha256": "54f9901da8ff6565bebbe3b75f085aa76d0b8840e5ab9de9c27d9b3bd379ed8b",
+      "machines": ["arm64", "aarch64"]
+    },
+    "windows-x86_64": {
+      "upstreamAsset": "cpython-3.14.7+20260901-x86_64-pc-windows-msvc-install_only.tar.gz",
+      "upstreamUrl": "https://github.com/astral-sh/python-build-standalone/releases/download/20260901/cpython-3.14.7%2B20260901-x86_64-pc-windows-msvc-install_only.tar.gz",
+      "deliveryUrl": "https://install.axiomlayer.com/runtime/python/3.14.7+20260901/cpython-x86_64-windows-msvc-install_only.tar.gz",
+      "size": 49509752,
+      "sha256": "5d9242012dded591d723a3a572dda265173ad58d8a3e6fdbc6dac8f94f36c80a",
+      "nixHash": "sha256-XZJCAS3e1ZHXI6Olct2iZRc61Y2KPm/bxtrI+U82yAo=",
+      "binaryPath": "python/python.exe",
+      "binarySha256": "703536cd5d48b90407300079f490247e81244057652895d5a60df1e7d2991962",
+      "machines": ["amd64", "x86_64"]
+    }
+  }
+}

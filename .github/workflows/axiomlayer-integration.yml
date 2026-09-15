@@ -1,0 +1,66 @@
+name: AxiomLayer managed Python integration
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  schedule:
+    - cron: "17 9 * * 1"
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  nix-contract:
+    name: Nix fixed-output contract
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - name: Check out the preserved fork history
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Install Nix for build-only verification
+        uses: cachix/install-nix-action@13d8dd58da0234aa297dedd986986ccb8e7f3e24 # v31.11.1
+        with:
+          extra_nix_config: |
+            experimental-features = nix-command flakes
+      - name: Verify the contract and every fixed output
+        run: nix flake check --no-write-lock-file --print-build-logs
+
+  native-artifact:
+    name: ${{ matrix.platform }} native capability probe
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - platform: darwin-aarch64
+            runner: macos-15
+          - platform: darwin-x86_64
+            runner: macos-15-intel
+          - platform: linux-aarch64
+            runner: ubuntu-24.04-arm
+          - platform: linux-x86_64
+            runner: ubuntu-24.04
+          - platform: windows-aarch64
+            runner: windows-11-vs2026-arm
+          - platform: windows-x86_64
+            runner: windows-2025
+    runs-on: ${{ matrix.runner }}
+    timeout-minutes: 30
+    steps:
+      - name: Check out the preserved fork history
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Verify promotion policy, manifests, source commit, and release tag
+        run: python axiomlayer/verify_managed_python.py contract --verify-git
+      - name: Verify the exact native artifact and Pyr capabilities
+        run: python axiomlayer/verify_managed_python.py artifact --platform "${{ matrix.platform }}"
