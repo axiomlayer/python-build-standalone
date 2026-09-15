@@ -10,6 +10,7 @@ permissions: {}
 
 jobs:
   zizmor:
+    if: github.repository == 'astral-sh/python-build-standalone'
     name: Run zizmor
     runs-on: ubuntu-latest
     permissions:

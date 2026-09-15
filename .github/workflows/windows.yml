@@ -18,6 +18,7 @@ permissions: { }
 
 jobs:
   crate-build:
+    if: github.repository == 'astral-sh/python-build-standalone'
     needs:
       - generate-matrix
     runs-on: ${{ matrix.runner }}
@@ -53,6 +54,7 @@ jobs:
           path: target/release/pythonbuild.exe
 
   generate-matrix:
+    if: github.repository == 'astral-sh/python-build-standalone'
     name: Generate build matrix
     runs-on: ubuntu-latest
     outputs:
@@ -114,6 +116,7 @@ jobs:
           STEPS_GET_LABELS_OUTPUTS_LABELS: ${{ steps.get-labels.outputs.labels }}
 
   build:
+    if: github.repository == 'astral-sh/python-build-standalone'
     timeout-minutes: 90
     needs:
       - generate-matrix
