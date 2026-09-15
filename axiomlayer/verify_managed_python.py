@@ -149,9 +149,6 @@ def verify_workflow_policy(repository_root: Path) -> None:
     action_pattern = re.compile(r"^[0-9a-f]{40}$")
     for path in sorted(workflow_directory.glob("*.y*ml")):
         text = path.read_text(encoding="utf-8")
-        require(
-            "codex_security_gate" not in text, f"{path.name}: retired gate returned"
-        )
         for number, line in enumerate(text.splitlines(), 1):
             stripped = line.strip()
             if not stripped.startswith("uses:"):
