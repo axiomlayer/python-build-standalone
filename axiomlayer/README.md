@@ -18,8 +18,9 @@ for Pyr by `AxiomLayer/dotfiles` PR #49.
   native architecture.
 
 The locked Nix check treats every archive and every dotfiles input as a fixed-output
-input with an independently checked SHA-256. Native hosted jobs then execute each managed interpreter on its
-matching architecture. These jobs only read public build inputs; they have no
+input with an independently checked SHA-256 and release size. Native hosted
+jobs then execute each managed interpreter on its matching architecture. These
+jobs only read public build inputs; they have no
 publisher credentials, signing permissions, environments, or deployment path.
 The workflow runs on every fork change and weekly, so upstream-sync PRs cannot
 bypass the provider boundary and removed or corrupted release assets are

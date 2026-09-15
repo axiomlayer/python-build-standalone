@@ -386,7 +386,10 @@ def safe_extract(archive: Path, destination: Path) -> None:
                     link == root or root in link.parents,
                     f"archive link escapes extraction root: {member.name}",
                 )
-        tar.extractall(destination)
+        if sys.version_info >= (3, 12):
+            tar.extractall(destination, filter="fully_trusted")
+        else:
+            tar.extractall(destination)
 
 
 def verify_artifact(args: argparse.Namespace) -> None:

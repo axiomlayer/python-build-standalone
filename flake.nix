@@ -15,7 +15,20 @@
         url = spec.upstreamUrl;
         hash = spec.nixHash;
       }) contract.artifacts;
-      allArchives = pkgs.lib.concatStringsSep " " (builtins.attrValues archives);
+      archiveChecks = pkgs.lib.concatStringsSep "\n" (
+        pkgs.lib.mapAttrsToList
+          (name: spec:
+            let archive = builtins.getAttr name archives;
+            in ''
+              test "$(stat -c %s ${archive})" = "${builtins.toString spec.size}"
+              printf '%s %s %s\n' \
+                '${name}' \
+                '${spec.sha256}' \
+                '${builtins.toString spec.size}' \
+                >> "$out/fixed-output-receipts.txt"
+            '')
+          contract.artifacts
+      );
     in {
       checks.${system}.axiomlayer-managed-python = pkgs.runCommand
         "axiomlayer-managed-python-${contract.source.version}-${contract.source.build}"
@@ -31,13 +44,7 @@
             --runtime-manifest ${runtimeManifest} \
             --candidate ${candidate} \
             > "$out/contract-receipt.json"
-          for archive in ${allArchives}; do
-            test -s "$archive"
-          done
-          python ${self}/axiomlayer/verify_managed_python.py artifact \
-            --platform linux-x86_64 \
-            --archive ${archives."linux-x86_64"} \
-            > "$out/linux-x86_64-receipt.json"
+          ${archiveChecks}
         '';
     };
 }

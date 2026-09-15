@@ -31,7 +31,7 @@ jobs:
         with:
           extra_nix_config: |
             experimental-features = nix-command flakes
-      - name: Verify every fixed output and the native Linux interpreter
+      - name: Verify the contract and every fixed output
         run: nix flake check --no-write-lock-file --print-build-logs
 
   native-artifact:
