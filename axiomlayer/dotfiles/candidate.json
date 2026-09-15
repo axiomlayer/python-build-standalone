@@ -45,7 +45,7 @@
       "sha256": "68ab5f870fbdcf6f21296d75cc9dcf74933b107cc83a1cb4f43b6f9514ff4e8d"
     }
   },
-  "policySha256": "1aceee38c54298c760d8a2f2c98c8e03377fa5ad562f3f609ef55fc469882ce4",
+  "policySha256": "0628d345837f3ec3931bf51aad5b70b8aa9619522df55695b67a95f03f4e009b",
   "schema": "axiom-upstream-candidate-v1",
   "sourceSnapshots": [
     {
@@ -99,7 +99,7 @@
     {
       "commit": "b09c88c14082339b66c7b7158d609a771e64ca69",
       "id": "sqlite",
-      "repository": "AxiomLayer/sqlite-provenance",
+      "repository": "AxiomLayer/sqlite",
       "version": "3.53.4"
     },
     {

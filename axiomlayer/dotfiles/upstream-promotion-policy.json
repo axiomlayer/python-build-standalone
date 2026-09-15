@@ -65,8 +65,8 @@
     {
       "id": "pyr",
       "role": "runtime",
-      "acquisition": "fork",
-      "upstream": "jasenc7/pyr",
+      "acquisition": "owned-source",
+      "upstream": "AxiomLayer/pyr",
       "repository": "AxiomLayer/pyr",
       "version": "0.1.1",
       "commit": "afa451ffb4336f5fcd1558e63c0f9efa71b9dde1"
@@ -101,9 +101,11 @@
     {
       "id": "sqlite",
       "role": "runtime",
-      "acquisition": "provenance-mirror",
+      "acquisition": "fork",
       "upstream": "sqlite.org/source",
-      "repository": "AxiomLayer/sqlite-provenance",
+      "repository": "AxiomLayer/sqlite",
+      "gitMirror": "sqlite/sqlite",
+      "fossilManifestUuid": "bf7c7f30031888f4e796e429ab3978879485813aaca6f641c7b33e4e09459bcc",
       "version": "3.53.4",
       "commit": "b09c88c14082339b66c7b7158d609a771e64ca69"
     },
