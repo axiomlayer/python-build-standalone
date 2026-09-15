@@ -26,6 +26,7 @@
           export HOME="$TMPDIR/home"
           mkdir -p "$HOME" "$out"
           python ${./axiomlayer/verify_managed_python.py} contract \
+            --repository-root ${self} \
             --policy ${policy} \
             --runtime-manifest ${runtimeManifest} \
             --candidate ${candidate} \

@@ -134,8 +134,8 @@ def workflow_job_blocks(text: str) -> dict[str, str]:
     return blocks
 
 
-def verify_workflow_policy() -> None:
-    workflow_directory = REPOSITORY_ROOT / ".github" / "workflows"
+def verify_workflow_policy(repository_root: Path) -> None:
+    workflow_directory = repository_root / ".github" / "workflows"
     for name in UPSTREAM_WORKFLOWS:
         path = workflow_directory / name
         blocks = workflow_job_blocks(path.read_text(encoding="utf-8"))
@@ -207,13 +207,30 @@ def verify_git_lineage(contract: dict[str, Any]) -> None:
 
 
 def verify_contract(args: argparse.Namespace) -> None:
-    verify_workflow_policy()
+    repository_root = Path(args.repository_root).resolve()
+    verify_workflow_policy(repository_root)
     contract = load_json(CONTRACT_PATH)
     require(contract.get("schema") == "axiom-python-build-provider-v1", "bad schema")
     require(contract.get("revision") == 1, "unsupported contract revision")
     require(
         contract["nix"]["nixpkgsCommit"] == "c3eea5b2156db11c7eeeada3dc737711255b253e",
         "Nixpkgs pin diverges from dotfiles PR #49",
+    )
+    flake_lock = load_json(repository_root / "flake.lock")
+    locked_nixpkgs = flake_lock["nodes"]["nixpkgs"]["locked"]
+    original_nixpkgs = flake_lock["nodes"]["nixpkgs"]["original"]
+    require(
+        locked_nixpkgs["rev"] == contract["nix"]["nixpkgsCommit"]
+        and original_nixpkgs["rev"] == contract["nix"]["nixpkgsCommit"],
+        "flake.lock Nixpkgs revision diverges",
+    )
+    require(
+        locked_nixpkgs["narHash"] == contract["nix"]["nixpkgsNarHash"],
+        "flake.lock Nixpkgs narHash diverges",
+    )
+    require(
+        locked_nixpkgs["lastModified"] == contract["nix"]["nixpkgsLastModified"],
+        "flake.lock Nixpkgs timestamp diverges",
     )
 
     consumer = contract["consumer"]
@@ -441,6 +458,7 @@ def parser() -> argparse.ArgumentParser:
     contract.add_argument("--policy")
     contract.add_argument("--runtime-manifest")
     contract.add_argument("--candidate")
+    contract.add_argument("--repository-root", default=str(REPOSITORY_ROOT))
     contract.add_argument("--verify-git", action="store_true")
     contract.set_defaults(handler=verify_contract)
 

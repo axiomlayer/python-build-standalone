@@ -17,7 +17,7 @@ for Pyr by `AxiomLayer/dotfiles` PR #49.
 - CPython 3.14.7, `tomllib`, and a working SQLite FTS5 virtual table on every
   native architecture.
 
-The Nix check treats every archive and every dotfiles input as a fixed-output
+The locked Nix check treats every archive and every dotfiles input as a fixed-output
 input with an independently checked SHA-256. Native hosted jobs then execute each managed interpreter on its
 matching architecture. These jobs only read public build inputs; they have no
 publisher credentials, signing permissions, environments, or deployment path.
