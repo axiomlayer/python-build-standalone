@@ -25,7 +25,7 @@
         ''
           export HOME="$TMPDIR/home"
           mkdir -p "$HOME" "$out"
-          python ${./axiomlayer/verify_managed_python.py} contract \
+          python ${self}/axiomlayer/verify_managed_python.py contract \
             --repository-root ${self} \
             --policy ${policy} \
             --runtime-manifest ${runtimeManifest} \
@@ -34,7 +34,7 @@
           for archive in ${allArchives}; do
             test -s "$archive"
           done
-          python ${./axiomlayer/verify_managed_python.py} artifact \
+          python ${self}/axiomlayer/verify_managed_python.py artifact \
             --platform linux-x86_64 \
             --archive ${archives."linux-x86_64"} \
             > "$out/linux-x86_64-receipt.json"
